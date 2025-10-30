@@ -60,5 +60,10 @@ namespace ApiConcessionaria.Infra.Data.Repositories
                 .OrderByDescending(p => p.DataCriacao)
                 .ToList();
         }
+
+        public void Dispose()
+        {
+            _sqlServerContext.Dispose();
+        }
     }
 }

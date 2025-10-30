@@ -1,6 +1,6 @@
 ﻿namespace ApiConcessionaria.Infra.Data.Interfaces
 {
-    public interface IBaseRepository<TEntity>
+    public interface IBaseRepository<TEntity> : IDisposable
         where TEntity : class
     {
         void AddRange(TEntity entity);

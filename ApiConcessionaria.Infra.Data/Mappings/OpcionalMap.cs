@@ -19,7 +19,7 @@ namespace ApiConcessionaria.Infra.Data.Mappings
 
             builder.Property(o => o.IdOpcional)
                 .HasColumnName("IDOPCIONAL")
-                .ValueGeneratedOnAdd()
+                .ValueGeneratedOnAdd() //gera o id
                 .IsRequired();
 
             builder.Property(o => o.Item)
@@ -31,6 +31,11 @@ namespace ApiConcessionaria.Infra.Data.Mappings
                 .HasColumnName("PRECO")
                 .HasColumnType("decimal(18,2)")
                 .IsRequired();
+
+            builder.Property(o => o.IdVeiculo)
+                .HasColumnName("IdVeiculo")
+                .HasColumnType("uniqueidentifier")
+                .IsRequired(false);
 
             #region Mapeamento de relacionamento 1 para muitos
 

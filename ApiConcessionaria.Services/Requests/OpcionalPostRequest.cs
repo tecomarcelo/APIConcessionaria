@@ -11,5 +11,8 @@ namespace ApiConcessionaria.Services.Requests
 
         [Required(ErrorMessage = "Campo obrigatório.")]
         public decimal Preco { get; set; }
+
+        //[Required(ErrorMessage = "Campo obrigatório.")]
+        public string? IdVeiculo { get; set; }
     }
 }
