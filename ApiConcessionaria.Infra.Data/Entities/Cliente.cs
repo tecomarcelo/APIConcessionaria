@@ -16,7 +16,7 @@ namespace ApiConcessionaria.Infra.Data.Entities
 
         #region Relacionamentos
 
-        public List<Pedido>? Pedidos { get; set; }
+        public ICollection<Pedido>? Pedidos { get; set; }
 
         #endregion
     }

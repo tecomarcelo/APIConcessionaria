@@ -28,7 +28,6 @@ namespace ApiConcessionaria.Infra.Data.Mappings
 
             builder.Property(p => p.Quantidade)
                 .HasColumnName("QUANTIDADE")
-                .HasColumnType("decimal(18,2)")
                 .IsRequired();
 
             builder.Property(p => p.DataCriacao)
@@ -45,6 +44,14 @@ namespace ApiConcessionaria.Infra.Data.Mappings
             builder.HasOne(p => p.Cliente) //Pedido TEM 1 Cliente
                 .WithMany(c => c.Pedidos) //Cliente TEM MUITOS Pedidos
                 .HasForeignKey(p => p.IdCliente); //chave estrangeira
+
+            builder.HasOne(p => p.Veiculo)
+                .WithMany(v => v.Pedidos)
+                .HasForeignKey(p => p.IdVeiculo);
+
+            builder.HasOne(p => p.Opcional)
+                .WithMany(o => o.Pedidos)
+                .HasForeignKey(p => p.IdOpcional);
 
             #endregion
         }

@@ -22,8 +22,8 @@ namespace ApiConcessionaria.Infra.Data.Entities
         #region Relacionamentos
 
         public Cliente? Cliente { get; set; }
-        //public Veiculo? Veiculo { get; set; }
-        //public Opcional? Opcional { get; set; }
+        public Veiculo? Veiculo { get; set; }
+        public Opcional? Opcional { get; set; }
 
         #endregion
     }

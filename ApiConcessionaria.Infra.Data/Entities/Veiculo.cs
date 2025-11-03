@@ -23,7 +23,8 @@ namespace ApiConcessionaria.Infra.Data.Entities
 
         #region Relacionamentos
 
-        public List<Opcional>? Opcionais { get; set; }
+        public ICollection<Opcional>? Opcionais { get; set; }
+        public ICollection<Pedido>? Pedidos { get; set; }
 
         #endregion
     }

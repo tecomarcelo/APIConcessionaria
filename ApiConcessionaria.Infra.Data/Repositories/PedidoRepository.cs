@@ -55,8 +55,8 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         {
             return _sqlServerContext.Pedido
                 .Include(p => p.Cliente)
-                //.Include(p => p.Veiculo)  //INNER JOIN
-                //.Include(p => p.Opcional)
+                .Include(p => p.Veiculo)  //INNER JOIN
+                .Include(p => p.Opcional)
                 .OrderByDescending(p => p.DataCriacao)
                 .ToList();
         }

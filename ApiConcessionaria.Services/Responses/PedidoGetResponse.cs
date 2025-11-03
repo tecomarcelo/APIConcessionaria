@@ -14,8 +14,8 @@
         #region Relacionamentos
 
         public ClienteGetResponse? Cliente { get; set; }
-        //public VeiculoGetResponse? Veiculo { get; set; }
-        //public OpcionalGetResponse? Opcional { get; set; }
+        public VeiculoGetResponse? Veiculo { get; set; }
+        public OpcionalGetResponse? Opcional { get; set; }
 
         #endregion
     }
