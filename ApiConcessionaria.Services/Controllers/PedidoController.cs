@@ -57,8 +57,7 @@ namespace ApiConcessionaria.Services.Controllers
 
                 var response = _mapper.Map<PedidoGetResponse>(pedido);
                 response.Cliente = _mapper.Map<ClienteGetResponse>(cliente);
-                response.Veiculo = _mapper.Map<VeiculoGetResponse>(veiculo);
-                response.Opcional = _mapper.Map<OpcionalGetResponse>(opcional);
+
                 return StatusCode(201, response);
             }
             catch (Exception e)

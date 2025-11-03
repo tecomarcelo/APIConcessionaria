@@ -39,7 +39,7 @@ namespace ApiConcessionaria.Infra.Data.Mappings
 
             #region Mapeamento de relacionamento 1 para muitos
 
-            builder.HasOne(p => p.Veiculo) //Opcional TEM 1 Veiculo
+            builder.HasOne(p => p.Veiculo) //Pedido TEM 1 Veiculo
                 .WithMany(c => c.Opcionais) //Veiculo TEM MUITOS Opcionais
                 .HasForeignKey(p => p.IdVeiculo); //chave estrangeira
 

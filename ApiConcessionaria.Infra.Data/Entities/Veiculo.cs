@@ -21,6 +21,10 @@ namespace ApiConcessionaria.Infra.Data.Entities
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
 
-        public ICollection<Opcional>? Opcionais { get; set; }
+        #region Relacionamentos
+
+        public List<Opcional>? Opcionais { get; set; }
+
+        #endregion
     }
 }

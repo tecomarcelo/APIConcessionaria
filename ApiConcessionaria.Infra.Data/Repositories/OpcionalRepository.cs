@@ -42,7 +42,7 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         public Opcional Get(Guid id)
         {
             return _sqlServerContext.Opcionals
-                //.Include(o => o.Veiculo)
+                .Include(o => o.Veiculo)
                 .FirstOrDefault(o => o.IdOpcional.Equals(id));
         }
 
@@ -55,7 +55,7 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         public List<Opcional> GetAll()
         {
             return _sqlServerContext.Opcionals
-                //.Include(o => o.Veiculo)
+                .Include(o => o.Veiculo)
                 .OrderBy(o => o.Item)
                 .ToList();
         }

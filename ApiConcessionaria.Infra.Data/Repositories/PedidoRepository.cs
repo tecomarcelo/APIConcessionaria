@@ -46,17 +46,17 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         {
             return _sqlServerContext.Pedido
                 .Include(p => p.Cliente)  //INNER JOIN
-                .Include(p => p.Veiculos)
-                .Include(p => p.Opcionals)
+                //.Include(p => p.Veiculos)
+                //.Include(p => p.Opcionals)
                 .FirstOrDefault(p => p.IdPedido.Equals(id));
         }
 
         public List<Pedido> GetAll()
         {
             return _sqlServerContext.Pedido
-                .Include(p => p.Veiculos)  //INNER JOIN
                 .Include(p => p.Cliente)
-                .Include(p => p.Opcionals)
+                //.Include(p => p.Veiculo)  //INNER JOIN
+                //.Include(p => p.Opcional)
                 .OrderByDescending(p => p.DataCriacao)
                 .ToList();
         }

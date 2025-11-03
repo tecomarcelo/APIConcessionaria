@@ -9,12 +9,6 @@ namespace ApiConcessionaria.Infra.Data.Entities
 {
     public class Pedido
     {
-        //Construtor para opcionais
-        public Pedido()
-        {
-            this.Opcionals = new HashSet<Opcional>().ToList();
-        }
-
         public Guid IdPedido { get; set; }
         public decimal Valor { get; set; }
         public int Quantidade { get; set; }
@@ -28,9 +22,8 @@ namespace ApiConcessionaria.Infra.Data.Entities
         #region Relacionamentos
 
         public Cliente? Cliente { get; set; }
-
-        public virtual ICollection<Veiculo>? Veiculos { get; set; }
-        public List <Opcional>? Opcionals { get; set; }
+        //public Veiculo? Veiculo { get; set; }
+        //public Opcional? Opcional { get; set; }
 
         #endregion
     }

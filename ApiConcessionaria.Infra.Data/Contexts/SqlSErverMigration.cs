@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApiConcessionaria.Infra.Data.Contexts
 {
-    public class SqlSErverMigration : IDesignTimeDbContextFactory<SqlServerContext>
+    public class SqlServerMigration : IDesignTimeDbContextFactory<SqlServerContext>
     {
         public SqlServerContext CreateDbContext(string[] args)
         {

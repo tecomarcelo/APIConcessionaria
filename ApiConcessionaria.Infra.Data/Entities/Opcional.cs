@@ -13,6 +13,10 @@ namespace ApiConcessionaria.Infra.Data.Entities
         public decimal Preco { get; set; }
         public Guid? IdVeiculo { get; set; }
 
+        #region relacionamentos
+
         public Veiculo? Veiculo { get; set; }
+        
+        #endregion
     }
 }
