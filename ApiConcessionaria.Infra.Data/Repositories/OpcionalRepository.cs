@@ -51,12 +51,19 @@ namespace ApiConcessionaria.Infra.Data.Repositories
             return _sqlServerContext.Opcionals
                 .FirstOrDefault(o => o.IdOpcional.Equals(id));
         }
-
+        
         public List<Opcional> GetAll()
         {
             return _sqlServerContext.Opcionals
                 .Include(o => o.Veiculo)
                 .OrderBy(o => o.Item)
+                .ToList();
+        }
+
+        public List<Opcional> GetByIds(List<int> ids)
+        {
+            return _sqlServerContext.Opcionals
+                .Where(o => ids.Contains(o.IdOpcional))
                 .ToList();
         }
 

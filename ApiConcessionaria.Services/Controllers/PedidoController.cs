@@ -17,17 +17,19 @@ namespace ApiConcessionaria.Services.Controllers
         private readonly IClienteRepository _clienteRepository;
         private readonly IVeiculoRepository _veiculoRepository;
         private readonly IOpcionalRepository _opcionalRepository;
+        private readonly IPedidoOpcionalRepository _pedidoOpcionalRepository;
         private readonly IMapper _mapper;
 
         //construtor do atribuito
-        public PedidoController(IPedidoRepository pedidoRepository, IMapper mapper, IClienteRepository clienteRepository, 
-            IVeiculoRepository veiculoRepository, IOpcionalRepository opcionalRepository)
+        public PedidoController(IPedidoRepository pedidoRepository, IMapper mapper, IClienteRepository clienteRepository,
+            IVeiculoRepository veiculoRepository, IOpcionalRepository opcionalRepository, IPedidoOpcionalRepository pedidoOpcionalRepository)
         {
             _pedidoRepository = pedidoRepository;
             _mapper = mapper;
             _clienteRepository = clienteRepository;
             _veiculoRepository = veiculoRepository;
             _opcionalRepository = opcionalRepository;
+            _pedidoOpcionalRepository = pedidoOpcionalRepository;
         }
 
 
@@ -47,13 +49,28 @@ namespace ApiConcessionaria.Services.Controllers
                     return StatusCode(422, new { message = "O Veiculo informado não está cadastrado." });
 
                 //pesquisando Opcionais associada pelo id inteiro
-                var opcional = _opcionalRepository.GetInt(request.IdOpcional);
-                if (veiculo == null)
+                var opcionais = _opcionalRepository.GetByIds(request.IdsOpcionais);
+                if (opcionais.Count != request.IdsOpcionais.Count)
                     return StatusCode(422, new { message = "O Opcional informado não está cadastrado." });
 
                 var pedido = _mapper.Map<Pedido>(request);
 
                 _pedidoRepository.AddRange(pedido);
+
+                //cria registros na tabela de junção PEDIDO_OPCIONAL
+                pedido.PedidoOpcionais = new List<PedidoOpcional>();
+
+                foreach (var idOpcional in request.IdsOpcionais)
+                {
+                    var pedidoOpcional = new PedidoOpcional
+                    {
+                        IdPedido = pedido.IdPedido,
+                        IdOpcional = idOpcional
+                    };
+
+                    pedido.PedidoOpcionais.Add(pedidoOpcional);
+                    _pedidoOpcionalRepository.AddRange(pedidoOpcional);
+                }
 
                 var response = _mapper.Map<PedidoGetResponse>(pedido);
                 response.Cliente = _mapper.Map<ClienteGetResponse>(cliente);
@@ -90,12 +107,27 @@ namespace ApiConcessionaria.Services.Controllers
                     return StatusCode(422, new { message = "O Veiculo informado não está cadastrado." });
 
                 //pesquisando Cliente associada pelo id
-                var opcional = _opcionalRepository.GetInt(request.IdOpcional);
-                if (opcional == null)
+                var opcionais = _opcionalRepository.GetByIds(request.IdsOpcionais);
+                if (opcionais.Count != request.IdsOpcionais.Count)
                     return StatusCode(422, new { message = "O Opcional informado não está cadastrado." });
 
                 _mapper.Map(request, pedido);
                 _pedidoRepository.Update(pedido);
+
+                //cria registros na tabela de junção PEDIDO_OPCIONAL
+                pedido.PedidoOpcionais = new List<PedidoOpcional>();
+
+                foreach (var idOpcional in request.IdsOpcionais)
+                {
+                    var pedidoOpcional = new PedidoOpcional
+                    {
+                        IdPedido = pedido.IdPedido,
+                        IdOpcional = idOpcional
+                    };
+
+                    pedido.PedidoOpcionais.Add(pedidoOpcional);
+                    _pedidoOpcionalRepository.AddRange(pedidoOpcional);
+                }
 
                 var response = _mapper.Map<PedidoGetResponse>(pedido);
                 response.Cliente = _mapper.Map<ClienteGetResponse>(cliente);

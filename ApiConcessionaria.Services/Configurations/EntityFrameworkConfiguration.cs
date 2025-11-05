@@ -19,6 +19,7 @@ namespace ApiConcessionaria.Services.Configurations
             builder.Services.AddTransient<IPedidoRepository, PedidoRepository>();
             builder.Services.AddTransient<IVeiculoRepository, VeiculoRepository>();
             builder.Services.AddTransient<IOpcionalRepository, OpcionalRepository>();
+            builder.Services.AddTransient<IPedidoOpcionalRepository, PedidoOpcionalRepository>();
         }
     }
 }

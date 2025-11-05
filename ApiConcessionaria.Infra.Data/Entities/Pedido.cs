@@ -17,13 +17,13 @@ namespace ApiConcessionaria.Infra.Data.Entities
         
         public Guid IdCliente { get; set; }
         public Guid IdVeiculo { get; set; }
-        public int IdOpcional { get; set; }
+        //public int IdOpcional { get; set; }
 
         #region Relacionamentos
 
         public Cliente? Cliente { get; set; }
         public Veiculo? Veiculo { get; set; }
-        public Opcional? Opcional { get; set; }
+        public ICollection<PedidoOpcional>? PedidoOpcionais { get; set; } //= new List<PedidoOpcional>();
 
         #endregion
     }

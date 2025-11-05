@@ -24,6 +24,7 @@ namespace ApiConcessionaria.Infra.Data.Contexts
         public DbSet<Pedido> Pedido { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
         public DbSet<Opcional> Opcionals { get; set; }
+        public DbSet<PedidoOpcional> PedidoOpcionals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +33,7 @@ namespace ApiConcessionaria.Infra.Data.Contexts
             modelBuilder.ApplyConfiguration(new PedidoMap());
             modelBuilder.ApplyConfiguration(new VeiculoMap());
             modelBuilder.ApplyConfiguration(new OpcionalMap());
+            modelBuilder.ApplyConfiguration(new PedidoOpcionalMap());
 
         }
     }

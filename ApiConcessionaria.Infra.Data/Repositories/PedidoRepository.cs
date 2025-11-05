@@ -45,10 +45,11 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         public Pedido Get(Guid id)
         {
             return _sqlServerContext.Pedido
-                .Include(p => p.Cliente)  //INNER JOIN
-                //.Include(p => p.Veiculos)
-                //.Include(p => p.Opcionals)
-                .FirstOrDefault(p => p.IdPedido.Equals(id));
+                .Include(p => p.Cliente)
+                .Include(p => p.Veiculo)
+                .Include(p => p.PedidoOpcionais)
+                    .ThenInclude(po => po.Opcional)
+                .FirstOrDefault(p => p.IdPedido == id);
         }
 
         public List<Pedido> GetAll()
@@ -56,10 +57,13 @@ namespace ApiConcessionaria.Infra.Data.Repositories
             return _sqlServerContext.Pedido
                 .Include(p => p.Cliente)
                 .Include(p => p.Veiculo)  //INNER JOIN
-                .Include(p => p.Opcional)
+                .Include(p => p.PedidoOpcionais)
+                    .ThenInclude(po => po.Opcional)
                 .OrderByDescending(p => p.DataCriacao)
                 .ToList();
         }
+
+
 
         public void Dispose()
         {

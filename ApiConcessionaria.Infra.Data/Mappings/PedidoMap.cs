@@ -48,10 +48,10 @@ namespace ApiConcessionaria.Infra.Data.Mappings
             builder.HasOne(p => p.Veiculo)
                 .WithMany(v => v.Pedidos)
                 .HasForeignKey(p => p.IdVeiculo);
-
-            builder.HasOne(p => p.Opcional)
-                .WithMany(o => o.Pedidos)
-                .HasForeignKey(p => p.IdOpcional);
+            
+            builder.HasMany(p => p.PedidoOpcionais)
+                .WithOne(po => po.Pedido)
+                .HasForeignKey(po => po.IdPedido);
 
             #endregion
         }

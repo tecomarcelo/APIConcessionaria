@@ -15,5 +15,6 @@ namespace ApiConcessionaria.Infra.Data.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Opcional GetInt(int id);
+        List<Opcional> GetByIds(List<int> id);
     }
 }

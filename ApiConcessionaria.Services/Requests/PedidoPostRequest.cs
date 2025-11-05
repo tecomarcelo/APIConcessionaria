@@ -18,7 +18,7 @@ namespace ApiConcessionaria.Services.Requests
         public Guid IdVeiculo { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public int IdOpcional { get; set; }
+        public List<int> IdsOpcionais { get; set; } = new();
 
     }
 }
