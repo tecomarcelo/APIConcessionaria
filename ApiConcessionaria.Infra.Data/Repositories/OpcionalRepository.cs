@@ -49,6 +49,7 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         public Opcional GetInt(int id)
         {
             return _sqlServerContext.Opcionals
+                .Include(o => o.Veiculo)
                 .FirstOrDefault(o => o.IdOpcional.Equals(id));
         }
         

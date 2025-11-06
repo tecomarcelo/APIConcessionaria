@@ -32,6 +32,7 @@ namespace ApiConcessionaria.Infra.Data.Repositories
 
         public void Update(Pedido entity)
         {
+            _sqlServerContext.Pedido.RemoveRange(entity);
             _sqlServerContext.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _sqlServerContext.SaveChanges();
         }

@@ -46,7 +46,7 @@ namespace ApiConcessionaria.Services.Controllers
         {
             try
             {
-                var opcional = _opcionalRepository.Get(request.IdOpcional);
+                var opcional = _opcionalRepository.GetInt(request.IdOpcional);
 
                 if (opcional == null)
                     return StatusCode(422,
@@ -65,11 +65,11 @@ namespace ApiConcessionaria.Services.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(int id)
         {
             try
             {
-                var opcional = _opcionalRepository.Get(id);
+                var opcional = _opcionalRepository.GetInt(id);
 
                 if (opcional == null)
                     return StatusCode(422,

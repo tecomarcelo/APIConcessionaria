@@ -5,10 +5,10 @@ namespace ApiConcessionaria.Services.Requests
     public class OpcionalPutRequest
     {
         [Required(ErrorMessage = "Campo obrigatorio.")]
-        public Guid IdOpcional { get; set; }
+        public int IdOpcional { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public string Item { get; set; }
+        public string? Item { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório.")]
         public decimal Preco { get; set; }
