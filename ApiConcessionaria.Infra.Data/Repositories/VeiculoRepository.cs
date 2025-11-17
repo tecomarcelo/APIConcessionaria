@@ -47,7 +47,7 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         {
             return _sqlServerContext.Veiculos
                 //.Include(v => v.Pedido.Cliente) //INNER JOIN
-                //.Include(v => v.Opcionals)
+                //.Include(v => v.Opcionais)
                 .FirstOrDefault(v => v.IdVeiculo.Equals(id));
         }
 
@@ -55,7 +55,7 @@ namespace ApiConcessionaria.Infra.Data.Repositories
         {
             return _sqlServerContext.Veiculos
                 //.Include(v => v.Pedido.Cliente) //INNER JOIN
-                //.Include(v => v.Opcionals)
+                //.Include(v => v.Opcionais)
                 .OrderBy(v => v.Nome)
                 .ToList();
         }
